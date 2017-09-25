@@ -2,9 +2,9 @@
   <div>
     {{ msg }}
     <form>
-      <button v-on:click="addTodo()">ADD TASK</button>
+      <button @click="addTodo()">ADD TASK</button>
       <button>DELETE FINISHED TASKS</button>
-      <p>input: <input type="text" v-model="newTodo"></p>
+      <p>input: <input type="text" v-model="newTodo" @keyup.enter="addTodo()"></p>
       <p>task: {{ newTodo }}</p>
     </form>
     <div class="task-list">
