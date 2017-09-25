@@ -19,7 +19,7 @@
 <script>
 export default {
   name: 'hello',
-  data () {
+  data:  () => {
     return {
       msg: 'Welcome to Your Vue.js App',
       todos : [
