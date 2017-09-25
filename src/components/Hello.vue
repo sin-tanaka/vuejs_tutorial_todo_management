@@ -4,8 +4,8 @@
     <form>
       <button>ADD TASK</button>
       <button>DELETE FINISHED TASKS</button>
-      <p>input: <input type="text"></p>
-      <p>task:</p>
+      <p>input: <input type="text" v-model="newTodo"></p>
+      <p>task: {{ newTodo }}</p>
     </form>
     <div class="task-list">
       <label class="task-list__item"
@@ -39,7 +39,8 @@ export default {
           text : 'awesome-vue',
           done: true
         },
-      ]
+      ],
+      newTodo: ""
     }
   }
 }
