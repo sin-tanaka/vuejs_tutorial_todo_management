@@ -8,7 +8,8 @@
     </form>
     <div class="task-list">
       <label class="task-list__item"
-             v-for="todo in todos">
+             v-for="todo in todos"
+             v-bind:class="{ 'task-list__item--checked': todo.done }">
         <input type="checkbox" v-model="todo.done">
         <input type="checkbox" v-model="todo.editing">
         <input v-if="todo.editing" v-model="todo.text" @keyup.enter="todo.editing = !todo.editing">
