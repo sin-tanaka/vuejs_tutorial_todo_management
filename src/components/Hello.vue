@@ -1,15 +1,15 @@
 <template>
   <div>
     <form>
-      <button @click="addTodo()">ADD TASK</button>
-      <button @click="removeTodo()">DELETE FINISHED TASKS</button>
+      <button @click="addTodo()">ADD TODO</button>
+      <button @click="removeTodo()">DELETE FINISHED TODOS</button>
       <p>input: <input type="text" v-model="newTodo"></p>
-      <p>task: {{ newTodo }}</p>
+      <p>todo: {{ newTodo }}</p>
     </form>
-    <div class="task-list">
-      <label class="task-list__item"
+    <div class="todo-list">
+      <label class="todo-list__item"
              v-for="todo in todos"
-             v-bind:class="{ 'task-list__item--checked': todo.done }">
+             v-bind:class="{ 'todo-list__item--checked': todo.done }">
         <input type="checkbox" v-model="todo.done">
         <input type="checkbox" v-model="todo.editing">
         <input v-if="todo.editing" v-model="todo.text" @keyup.enter="todo.editing = !todo.editing">
@@ -66,7 +66,7 @@ export default {
   display: -o-flex;
 }
 
-.task-list {
+.todo-list {
   @include flex-vender;
   flex-direction: column;
   align-items: center;
