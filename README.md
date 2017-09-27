@@ -633,8 +633,10 @@ export default {
 </style>
 ```
 
-`<template>` の中で繰り返し表れていた`<label>` に`v-for` が追加され、Todoのテキストはdataオプションでreturnしているオブジェクトの配列に
-移動しました。
+`<template>` の中で繰り返し表れていた`<label>` に`v-for` が追加され、`<template>` の中身がスッキリしました。
+
+また、Todoの内容は`<script>` タグ内のdataオプションに移動しています。
+
 `v-for="todo in todos"` では、dataに定義したtodos配列内のオブジェクトを一つずつ取り出し、todoに入れる、という処理をしています。分かる人であれば、単にtodosをイテレータとして扱っていると思ってもらえればよいと思います。
 取り出したtodoの要素へのアクセスはtodo.text、todo.doneのようにアクセスできます。
 
