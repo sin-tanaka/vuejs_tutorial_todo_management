@@ -94,7 +94,7 @@ npm run dev
 ```
 
 一つずつザックリみて、全体の流れを把握してみます。
-```html: index.html
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -113,7 +113,7 @@ cssもjsも読み込んでいませんが、最終的にはWebpackなどで一�
 `<div id="app"></div>` を覚えておいて下さい。
 
 
-```js: src/main.js
+```js
 
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
@@ -136,7 +136,7 @@ new Vue({
 また、App、routerというモジュールを読み込んでいるようです。
 
 
-```vue: src/App.vue
+```vue
 
 <template>
   <div id="app">
@@ -169,10 +169,10 @@ vue-loaderというモジュールでブラウザで読み込める形へコン�
 Helloコンポーネントの説明のときに詳しく説明しますので、ここではザックリ中身を見てみます。
 
 <template>の中身を見ると、画面のVueのロゴはAppコンポーネントで出力しているようです。
-又、<img>タグ下の<router-view>というタグが気になりますね。
+又、`<img>` タグ下の`<router-view>` というタグが気になりますね。
 
 
-```js: src/router/index.js
+```js
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
@@ -214,7 +214,7 @@ export default new Router({
 router-viewではルートにアクセスしたとき、Helloコンポーネントを出力していることが分かりました。
 Helloコンポーネントを見てみます。
 
-```vue: src/components/Hello.vue
+```vue
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
@@ -360,7 +360,7 @@ Vueコンポーネントの詳細は以下のドキュメントを参照下さ�
 
 `<script>`タグではVueコンポーネントのオプションのオブジェクトをエクスポートします。vue-loaderを通して実体はVueインスタンスが作られます。
 
-```vue
+```js
 new Vue({
   name: 'app'
 })
@@ -380,11 +380,13 @@ new Vue({
 ちなみにdataオプションは以下のように書くことも可能です。
 ```js
 // OK
+{
 data: function () {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
   }
+}
 ```
 
 このときアロー関数を使わないようにしましょう、変数のスコープが変わってしまうため推奨されません。
