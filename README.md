@@ -1,6 +1,6 @@
 # tutorial_vuejs_todo_management
 
-> A Vue.js project
+Vue.jsのtutorial用リポジトリ
 
 ## Build Setup
 
@@ -27,7 +27,37 @@ npm test
 F/or detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 
-vue-cliをinstallします
+## チュートリアルのゴール
+
+* vue-cliをつかってプロジェクトを作成する
+* Vue.jsでTodoリストアプリケーションを作ってみる
+* 作成したアプリケーションをvue-loader、webpackでビルド／バンドルして、github-pagesで配信してみる
+
+### できたらやりたい
+
+* コンポーネントに分割（親コンポーネント・子コンポーネント間でのデータのやり取り）
+* Vuexの導入
+
+リポジトリ: https://github.com/sin-tanaka/vuejs_tutorial_todo_management
+github-pages: https://sin-tanaka.github.io/vuejs_tutorial_todo_management/
+
+## 環境
+
+```
+mac os: 10.11.6
+node: v6.11.3
+npm: 3.10.10
+エディター: Pycharm # IntelliJ系のIDEに*.vueファイルの
+```
+
+筆者はnodeもnpmもあまり詳しくないのですが各自入れておいて下さい。
+npmは、-g --save-dev --saveのオプションだけ把握していればとりあえず大丈夫です。
+
+## Setup
+
+まずはvue-cliをinstallします。
+vue-cliは雛形からプロジェクトを作成してくれる公式ツールです。公式には、「nodeやnpm、webpackに詳しくないならあまり使わないほうがいいよ」と書いてあるのですがとても便利なので使います。
+
 ```bash
 npm install -g vue-cli
 ```
@@ -35,8 +65,10 @@ npm install -g vue-cli
 vue-cliのversionを確認し、 `vue init <template> <project-name>` でプロジェクトを作成します。
 ここではwebpackというテンプレートを使い、tutorial_vuejs_todo_managementというプロジェクト名にしています。
 
-この時いくつか質問されます。基本的にそのままでいいと思いますが、私はLintツールとe2eテストのツールは外しています。
+この時いくつか質問されます。基本的にそのままでいいと思いますが、私はLinterとe2eテストのツールは外しています。
+尚、公式ではLinterを使うことが推奨されています。が、特定のjsコーディング規約に慣れていない人には結構つらいです。これを機会に慣れるのも有りだと思います。
 
+ここでは初学者向けのチュートリアルということで外しています。
 
 ```bash
 % vue --version
@@ -63,7 +95,7 @@ vue-cliのversionを確認し、 `vue init <template> <project-name>` でプロ�
    Documentation can be found at https://vuejs-templates.github.io/webpack
 ```
 
-`vue init` を実行したディレクトリにプロジェクトが作成されたので、get startedの通りにコマンドを実行してみます。
+`vue init` を実行したディレクトリにプロジェクトが作成されたので、`get started` の通りにコマンドを実行してみます。
 
 ```bash
 cd tutorial_vuejs_todo_management
@@ -78,9 +110,9 @@ npm run dev
 
 `npm run dev` を走らせたままファイルを編集してみるとリアルタイムでコンパイルが走り、画面が更新されるかと思います。
 
-主にいじっていくファイルは以下になります。他はだいたい設定ファイルです。
+主にいじっていくファイルは以下になります。他はだいたい設定ファイルです。筆者も設定ファイルについてはよく分かっていないのですが、よく分かって無くても動くものが作れてしまうのがvue-cliを使うメリットだと思います。
 
-```
+```bash
 ./index.html
 ./src
 ├── App.vue
@@ -93,7 +125,10 @@ npm run dev
     └── index.js
 ```
 
+
 一つずつザックリみて、全体の流れを把握してみます。
+
+`index.html`
 ```html
 <!DOCTYPE html>
 <html>
@@ -112,9 +147,8 @@ cssもjsも読み込んでいませんが、最終的にはWebpackなどで一�
 
 `<div id="app"></div>` を覚えておいて下さい。
 
-
+`src/main.js`
 ```js
-
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
@@ -136,8 +170,8 @@ new Vue({
 また、App、routerというモジュールを読み込んでいるようです。
 
 
+`src/App.vue`
 ```vue
-
 <template>
   <div id="app">
     <img src="./assets/logo.png">
@@ -171,7 +205,7 @@ Helloコンポーネントの説明のときに詳しく説明しますので、
 <template>の中身を見ると、画面のVueのロゴはAppコンポーネントで出力しているようです。
 又、`<img>` タグ下の`<router-view>` というタグが気になりますね。
 
-
+`src/router/index.js`
 ```js
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -189,10 +223,11 @@ export default new Router({
   ]
 })
 ```
-router-viewの実体はここで定義されています。vue-routerはルーティングと、それに対応するコンポーネントを決めています。
+`<router-view>` の実体は`vue-router` ここで定義されています。`vue-router` はルーティングと、それに対応するコンポーネントを決めています。
 ここでは`/` にアクセスした時、Helloコンポーネントを出力するように設定しています。ルーティングを追加するのは簡単で、routesの配列にオブジェクトを追加していくだけです。
 ここではHogeコンポーネントがあると仮定し、`/hoge` にアクセスした時Hogeコンポーネントを返すルーティングを設定する例を示します。
 
+`src/router/index.jsにルーティングを追加した例`
 ```js
 export default new Router({
   routes: [
@@ -214,6 +249,7 @@ export default new Router({
 router-viewではルートにアクセスしたとき、Helloコンポーネントを出力していることが分かりました。
 Helloコンポーネントを見てみます。
 
+`src/components/Hello.vue`
 ```vue
 <template>
   <div class="hello">
@@ -404,6 +440,8 @@ data: () => {
 
 ここまでで全体の流れの説明は終わりです。
 
+---
+
 ここからはこれらのコンポーネントを修正して、Todoリストを作ってみます。
 
 Todoリストの要件は以下のように定義しておきます。
@@ -420,10 +458,186 @@ Todoリストの要件は以下のように定義しておきます。
 * コンポーネントの分割（親子間でのデータのやり取り）
 * Vuexの導入
 
-まで出来れば理想です。
+まで出来れば理想ですが一先ず一つのコンポーネントにべた書きでTodoリストを作ってみましょう。
+
+
+その前に、`*.vue` ファイル内の`<style>` タグ内で、`SASS/SCSS` を書けるようにしましょう（これは好みなので、普通のCSSでいい人は入れなくてもよいです。但しサンプルコードはSCSSで書かれています）
 
 ```bash
 npm install sass-loader node-sass --save-dev
 ```
+
+これでSCSSが書けるようになりました。
+まずはhtmlとCSSでTodoリストのイメージを組み上げてみます。
+
+diff: https://github.com/sin-tanaka/vuejs_tutorial_todo_management/commit/07faa150878b8dade8fa48ee4f58168da31d08a2
+
+`src/App.vue`
+```vue
+<template>
+  <div id="app">
+    <img src="./assets/logo.png">
+    <h1>Todo Management.</h1>
+    <hr />
+    <router-view></router-view>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'app'
+}
+</script>
+
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
+```
+
+`src/components/Hello.vue`
+```vue
+<template>
+  <div>
+    {{ msg }}
+    <form>
+      <button>ADD TASK</button>
+      <button>DELETE FINISHED TASKS</button>
+      <p>input: <input type="text"></p>
+      <p>task:</p>
+    </form>
+    <div class="task-list">
+      <label class="task-list__item"><input type="checkbox"><button>EDIT</button>vue-router</label>
+      <label class="task-list__item"><input type="checkbox"><button>EDIT</button>vuex</label>
+      <label class="task-list__item"><input type="checkbox"><button>EDIT</button>vue-loader</label>
+      <label class="task-list__item--checked"><input type="checkbox" checked><button>EDIT</button>awesome-vue</label>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'hello',
+  data () {
+    return {
+      msg: 'Welcome to Your Vue.js App'
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss" scoped>
+@mixin flex-vender() {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+}
+.task-list {
+  @include flex-vender;
+  flex-direction: column;
+  align-items: center;
+  &__item {
+    width: 270px;
+    text-align: left;
+    $element: #{&};
+    &--checked {
+      @extend #{$element};
+      color: #85a6c6;
+    }
+  }
+}
+</style>
+```
+
+以下のような画面になるはずです。このとき、`npm run dev` は起動しっぱなしでOKですソースを編集すると自動でコンパイル・リロードまでしてくれることが確認できると思います（ホットリロード）。
+
+![Todoリストのイメージ](./static/02.png)
+
+Todoのテキストは初期画面のテキストをそのまま使っています。各自変えてもらって問題ないです。
+
+htmlとcssに手を加えただけなので、このままでは何も動作しません。
+次に、ボタンやテキストエリアに動作やデータを紐付けていきます。
+まずは、`src/components/Hello.vue` で繰り返し出現しているTodoの一覧表示を`v-for` ディレクティブを使ってリストレンダリングしてみます。
+
+diff: https://github.com/sin-tanaka/vuejs_tutorial_todo_management/commit/852419626e620efa0397f685e67f79b2ee926998
+
+`src/components/Hello.vue` 
+```vue
+<template>
+  <div>
+    {{ msg }}
+    <form>
+      <button>ADD TASK</button>
+      <button>DELETE FINISHED TASKS</button>
+      <p>input: <input type="text"></p>
+      <p>task:</p>
+    </form>
+    <div class="task-list">
+      <label class="task-list__item"
+             v-for="todo in todos">
+        <input type="checkbox"><button>EDIT</button>{{ todo.text }}
+      </label>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'hello',
+  data () {
+    return {
+      msg: 'Welcome to Your Vue.js App',
+      todos : [
+        {text : 'vue-router', done: false},
+        {text : 'vuex', done: false},
+        {text : 'vue-loader', done: false},
+        {text : 'awesome-vue', done: true },
+      ]
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss" scoped>
+@mixin flex-vender() {
+  display: flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+}
+.task-list {
+  @include flex-vender;
+  flex-direction: column;
+  align-items: center;
+  &__item {
+    width: 270px;
+    text-align: left;
+    $element: #{&};
+    &--checked {
+      @extend #{$element};
+      color: #85a6c6;
+    }
+  }
+}
+</style>
+```
+
+`<template>` の中で繰り返し表れていた`<label>` に`v-for` が追加され、Todoのテキストはdataオプションでreturnしているオブジェクトの配列に
+移動しました。
+`v-for="todo in todos"` では、dataに定義したtodos配列内のオブジェクトを一つずつ取り出し、todoに入れる、という処理をしています。分かる人であれば、単にtodosをイテレータとして扱っていると思ってもらえればよいと思います。
+取り出したtodoの要素へのアクセスはtodo.text、todo.doneのようにアクセスできます。
+
+ここではtodoにtextとdone（todo済フラグ）を定義しておきます。
 
 
