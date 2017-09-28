@@ -1050,7 +1050,7 @@ Vue.jsやvue-cliの便利さが体感できたでしょうか。jQueryなどと�
 
 ここまでで基本的なことは一通り学べたかと思います。あとは、
 
-* インスタンスのオプション（computed、created、watch）
+* インスタンスのオプション（computed、ready、created、watch）
 * ルーティング(vue-router)
 * コンポーネント分割
 * axiosを使ったリクエスト送信
