@@ -24,22 +24,22 @@ npm run unit
 npm test
 ```
 
-F/or detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+F/or detailed explanation on how things work, checkout the [guide](http://vuejs-templates.GitHub.io/webpack/) and [docs for vue-loader](http://vuejs.GitHub.io/vue-loader).
 
 
 ## チュートリアルのゴール
 
 * vue-cliをつかってプロジェクトを作成する
 * Vue.jsでTodoリストアプリケーションを作ってみる
-* 作成したアプリケーションをvue-loader、webpackでビルド／バンドルして、github-pagesで配信してみる
+* 作成したアプリケーションをvue-loader、webpackでビルド／バンドルして、GitHub-pagesで配信してみる
 
 ### できたらやりたい
 
 * コンポーネントに分割（親コンポーネント・子コンポーネント間でのデータのやり取り）
 * Vuexの導入
 
-リポジトリ: https://github.com/sin-tanaka/vuejs_tutorial_todo_management
-github-pages: https://sin-tanaka.github.io/vuejs_tutorial_todo_management/
+リポジトリ: https://GitHub.com/sin-tanaka/vuejs_tutorial_todo_management
+GitHub-pages: https://sin-tanaka.GitHub.io/vuejs_tutorial_todo_management/
 
 ## 環境
 
@@ -92,7 +92,7 @@ vue-cliのversionを確認し、 `vue init <template> <project-name>` でプロ�
      npm install
      npm run dev
 
-   Documentation can be found at https://vuejs-templates.github.io/webpack
+   Documentation can be found at https://vuejs-templates.GitHub.io/webpack
 ```
 
 `vue init` を実行したディレクトリにプロジェクトが作成されたので、`get started` の通りにコマンドを実行してみます。
@@ -107,8 +107,8 @@ npm run dev
 
 ![初期画面](./static/01.png "初期画面")
 
+のちにGitHub-pagesを利用するため、GitHubを使いますので、この段階でGitHubリポジトリの作成、pushまでしてしまうと楽だと思います。
 
-`npm run dev` を走らせたままファイルを編集してみるとリアルタイムでコンパイルが走り、画面が更新されるかと思います。
 
 主にいじっていくファイルは以下になります。他はだいたい設定ファイルです。筆者も設定ファイルについてはよく分かっていないのですが、よく分かって無くても動くものが作れてしまうのがvue-cliを使うメリットだと思います。
 
@@ -261,14 +261,14 @@ Helloコンポーネントを見てみます。
       <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
       <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
       <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
+      <li><a href="http://vuejs-templates.GitHub.io/webpack/" target="_blank">Docs for This Template</a></li>
     </ul>
     <h2>Ecosystem</h2>
     <ul>
       <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
       <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
+      <li><a href="https://GitHub.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
   </div>
 </template>
@@ -318,14 +318,14 @@ a {
       <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
       <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
       <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
+      <li><a href="http://vuejs-templates.GitHub.io/webpack/" target="_blank">Docs for This Template</a></li>
     </ul>
     <h2>Ecosystem</h2>
     <ul>
       <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
       <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
+      <li><a href="https://GitHub.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
   </div>
 </template>
@@ -454,7 +454,7 @@ Todoリストの要件は以下のように定義しておきます。
 
 一般的なCRUDを持つインターフェースだと思います。
 
-最終的にできあがったTodoリストは`github-pages`を使って配信するところまでを一先ずの目標とし、その後可能であれば
+最終的にできあがったTodoリストは`GitHub-pages`を使って配信するところまでを一先ずの目標とし、その後可能であれば
 * コンポーネントの分割（親子間でのデータのやり取り）
 * Vuexの導入
 
@@ -470,7 +470,7 @@ npm install sass-loader node-sass --save-dev
 これでSCSSが書けるようになりました。
 まずはhtmlとCSSでTodoリストのイメージを組み上げてみます。
 
-diff: https://github.com/sin-tanaka/vuejs_tutorial_todo_management/commit/07faa150878b8dade8fa48ee4f58168da31d08a2
+diff: https://GitHub.com/sin-tanaka/vuejs_tutorial_todo_management/commit/07faa150878b8dade8fa48ee4f58168da31d08a2
 
 `src/App.vue`
 ```vue
@@ -568,7 +568,7 @@ htmlとcssに手を加えただけなので、このままでは何も動作し�
 次に、ボタンやテキストエリアに動作やデータを紐付けていきます。
 まずは、`src/components/Hello.vue` で繰り返し出現しているTodoの一覧表示を`v-for` ディレクティブを使ってリストレンダリングしてみます。
 
-diff: https://github.com/sin-tanaka/vuejs_tutorial_todo_management/commit/852419626e620efa0397f685e67f79b2ee926998
+diff: https://GitHub.com/sin-tanaka/vuejs_tutorial_todo_management/commit/852419626e620efa0397f685e67f79b2ee926998
 
 `src/components/Hello.vue` 
 ```vue
@@ -655,7 +655,7 @@ todoリストにtodoを追加していくには、v-forで表示しているtodo
 双方向バインディングを使うと、js側で値を変更すれば画面側に反映され、画面側で値を変更すればjs側に反映されます。
 Vueコンポーネント側でnewTodoというデータを追加し、`<input>` タグにバインディングしてみましょう。
 
-diff: https://github.com/sin-tanaka/vuejs_tutorial_todo_management/commit/cc50c588d015be8ac2beaa89f4e2bb07bed8ead0
+diff: https://GitHub.com/sin-tanaka/vuejs_tutorial_todo_management/commit/cc50c588d015be8ac2beaa89f4e2bb07bed8ead0
 
 `src/components/Hello.vue`
 ```vue
@@ -708,7 +708,7 @@ export default {
 vueにはイベントハンドリングのディレクティブがあるので、それを利用してADD TASKボタンが押されたらnewTodoをtodosに追加という処理を加えます。
 （今更ですが、TodoとTaskが混在していてよくないですね・・）
 
-diff: https://github.com/sin-tanaka/vuejs_tutorial_todo_management/commit/06b522cdbbeeaad51bf99fe638ceebca64ba7503
+diff: https://GitHub.com/sin-tanaka/vuejs_tutorial_todo_management/commit/06b522cdbbeeaad51bf99fe638ceebca64ba7503
 
 `src/components/Hello.vue`
 ```vue
@@ -778,7 +778,7 @@ export default {
 先程、todoにはdoneというbooleanを追加しているので、これもnewTodoと同様に、リストレンダリングしたcheckboxにバインディングします。
 また、DELETE FINISHED TASKSが押下されたら`todo.done===true` のtodoを削除してあげます。
 
-diff: https://github.com/sin-tanaka/vuejs_tutorial_todo_management/commit/03619d921d285683527cf64da408541ffb97756a
+diff: https://GitHub.com/sin-tanaka/vuejs_tutorial_todo_management/commit/03619d921d285683527cf64da408541ffb97756a
 （keyup.enterイベントを削除しているdiffも出ますが気にせず、、）
 
 `src/components/Hello.vue`
@@ -803,7 +803,7 @@ diff: https://github.com/sin-tanaka/vuejs_tutorial_todo_management/commit/03619d
 <script>
 export default {
   name: 'hello',
-  data:  () => {
+  data: function () {
     return {
       msg: 'Welcome to Your Vue.js App',
       todos : [
@@ -843,6 +843,216 @@ export default {
 
 これで、画面のcheckboxの変化と連動して、todo.doneのtrue/falseが切り替わるようになりました。
 また、removeTodoでは、todosを走査し、todo.doneがtrueであれば配列から削除しています。
-このとき、todosは破壊的に配列から削除されるため、配列はtodos.lengthから0へ向かって走査されていることに注意して下さい。
+このとき、todosに対し破壊的な操作をすることから、配列の長さは動的に変わります。
+そのため配列はtodos.lengthから0へ向かって走査されていることに注意して下さい。
+
+これで一括削除機能が追加できました。
+あとはtodoの編集機能ができれば一先ず完成です。
+当初、EDITボタンを押下 → 編集画面ダイアログが表示 のように編集することを想定していましたが、ここも双方向バインディングと、v-ifディレクティブを使うことで簡単に実装してしまいます。
+
+diff: https://GitHub.com/sin-tanaka/vuejs_tutorial_todo_management/commit/38cf6a941c74708080befe03b48618af7a0d9100
+
+`src/components/Hello.vue`
+```vue
+<template>
+  <div>
+    <form>
+      <button @click="addTodo()">ADD TASK</button>
+      <button @click="removeTodo()">DELETE FINISHED TASKS</button>
+      <p>input: <input type="text" v-model="newTodo"></p>
+      <p>task: {{ newTodo }}</p>
+    </form>
+    <div class="task-list">
+      <label class="task-list__item"
+             v-for="todo in todos">
+        <input type="checkbox" v-model="todo.done">
+        <input type="checkbox" v-model="todo.editing">
+        <input v-if="todo.editing" v-model="todo.text" @keyup.enter="todo.editing = !todo.editing">
+        <span v-else>{{ todo.text }}</span>
+      </label>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'hello',
+  data: function () {
+    return {
+      msg: 'Welcome to Your Vue.js App',
+      todos : [
+        {text : 'vue-router', done: false, editing: false},
+        {text : 'vuex', done: false, editing: false},
+        {text : 'vue-loader', done: false, editing: false},
+        {text : 'awesome-vue', done: true, editing: false},
+      ],
+      newTodo: ""
+    }
+  },
+  methods: {
+    addTodo: function(event) {
+      let text = this.newTodo && this.newTodo.trim()
+      if (!text) {
+        return
+      }
+      this.todos.push({
+        text: text,
+        done: false,
+        editing: false
+      })
+      this.newTodo = ''
+    },
+    removeTodo: function (event) {
+      for (let i = this.todos.length - 1; i >= 0; i--) {
+        if (this.todos[i].done) this.todos.splice(i, 1)
+      }
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+/*省略*/
+</style>
+```
+
+まずはtodoにeditingを追加しました。このフラグを見て編集している／していないを切り替えることにします。
+加えて、EDITボタンはtodo.editingとバインディングしたチェックボックスに変更しました。
+
+`v-if` ディレクティブを使用することで、要素の表示／非表示を切り替えることができます。
+ここではtodo.editingを参照して、
+
+* trueだったら、todo.textをバインディングし、keyup.enterイベントでtodo.editingを反転させる、`<input>` タグ
+* falseだったら、todo.textをそのまま出力する`<span>` タグ
+
+を`v-if`, `v-else` にそれぞれ追加しました。
+
+editingにバインディングしたチェックボックスを切り替えることで、素のtodo.text／todo.textの入った`<input>` タグ、と切り替わることが確認できたでしょうか？
+最終的に以下のような画面になります。
+
+![完成形](./static/04.png "初期画面")
+
+これで、
+
+* Todoはリストで一覧表示すること
+* Todoはテキストボックスから追加できること
+* それぞれのTodoにはチェックボックスが付いており、それを切り替えることでTodoの状態（未達成／達成済）を切り替えること
+* チェック済のTodoを一括で消すボタンがあること
+* それぞれのTodoは編集可能なこと
+
+を満たすTodoリストが完成しました。ここまできたら、あとは装飾ですね。
+
+チェック済の項目については薄い青色で表示するようにしてみます。
+`v-if` ディレクティブを使って、todo.doneを見て、文字色青色のcssを付与したタグを出力／素のタグを出力…のようにDOMの描画で分けることも可能ですが、`v-bind` ディレクティブを使って、classを付与することで切り替えてみましょう。
+
+diff: https://GitHub.com/sin-tanaka/vuejs_tutorial_todo_management/commit/2fbb3cd80cca9ca4bd1abd8595fece173828f4db
+
+`src/components/Hello.vue`
+```vue
+<template>
+  <div>
+    <form>
+      <button @click="addTodo()">ADD TASK</button>
+      <button @click="removeTodo()">DELETE FINISHED TASKS</button>
+      <p>input: <input type="text" v-model="newTodo"></p>
+      <p>task: {{ newTodo }}</p>
+    </form>
+    <div class="task-list">
+      <label class="task-list__item"
+             v-for="todo in todos"
+             v-bind:class="{ 'task-list__item--checked': todo.done }">
+        <input type="checkbox" v-model="todo.done">
+        <input type="checkbox" v-model="todo.editing">
+        <input v-if="todo.editing" v-model="todo.text" @keyup.enter="todo.editing = !todo.editing">
+        <span v-else>{{ todo.text }}</span>
+      </label>
+    </div>
+  </div>
+</template>
+
+// 省略
+```
+
+html要素に対するclassのバインディングには、
+* オブジェクト構文
+* 配列構文
+の書き方がありますが、ここではオブジェクト構文で書いています。
+
+[クラスとスタイルのバインディング](https://jp.vuejs.org/v2/guide/class-and-style.html)
+
+todo.doneがtrueと評価される場合、class='task-list__item--checked'が付与されます。
+また、v-bind:classはプレーンなclass属性がある要素に書いても大丈夫です。
 
 
+これで装飾も完了しました。
+ここまで出来たらアプリケーションを配信してみましょう。
+
+アプリケーションの配信にはGitHub-pagesを使います。
+これはGitHubのリポジトリに対応して、静的ファイルをホスティングできる仕組みです。
+プロダクトのランディングページなどにも使用されます。
+
+まずは配信用の静的ファイルをビルドしてみましょう。この仕組みもvue-cliで用意されています。
+
+```bash
+npm run build
+```
+
+デフォルトの設定だと./distが配信用ディレクトリとして作成されるはずです。
+個人で配信環境を持っている人はこれでOKですが、今回はGitHub-pagesでホストするので、少しだけ設定を変えます。
+
+GitHub-pagesではリポジトリルート直下の./docsディレクトリが配信されるので（ここは設定によります）、./docsディレクトリを生成するように変更します。
+
+diff: https://GitHub.com/sin-tanaka/vuejs_tutorial_todo_management/commit/b6fb359da3dc7080682cf703613a2328c9679a95
+
+`config/index.js`
+```js
+// see http://vuejs-templates.GitHub.io/webpack for documentation.
+var path = require('path')
+
+module.exports = {
+  build: {
+    env: require('./prod.env'),
+    index: path.resolve(__dirname, '../docs/index.html'),
+    assetsRoot: path.resolve(__dirname, '../docs'),
+    assetsSubDirectory: 'static',
+    assetsPublicPath: './',
+    productionSourceMap: true,
+    // Gzip off by default as many popular static hosts such as
+    // Surge or Netlify already gzip all static assets for you.
+    // Before setting to `true`, make sure to:
+    // npm install --save-dev compression-webpack-plugin
+    productionGzip: false,
+    productionGzipExtensions: ['js', 'css'],
+    // Run the build command with an extra argument to
+    // View the bundle analyzer report after build finishes:
+    // `npm run build --report`
+    // Set to `true` or `false` to always turn it on or off
+    bundleAnalyzerReport: process.env.npm_config_report
+  },
+// 省略
+}
+```
+
+設定後、再度`npm run build` するとdocsディレクトリが作成されるので、プロジェクトをGitHubにpushします（gitの設定は割愛）。
+リポジトリのSettingから、./docsをGitHub-pagesとして配信するように設定します。
+
+![GitHub-pagesの設定](./static/05.png)
+
+これで、`https://<usename>.github.io/<repository_name>/`にアクセスすると、./docsが配信できていることを確認できるかと思います。
+
+以上でチュートリアルは終了です。
+
+いかがだったでしょうか？今回はvue-cliを使って、Vue.jsの機能を活用したTodoリストを作成しました。
+Vue.jsやvue-cliの便利さが体感できたでしょうか。jQueryなどと比べてもかなり楽に作成できたことかと思います。
+
+今回使用した双方向バインディングなどは、scoped cssを除き、cdnで配信されているVue.jsを読み込むことでも既存環境に簡単に組み込むことが可能です。
+
+ここまでで基本的なことは一通り学べたかと思います。あとは、
+
+* インスタンスのオプション（computed、created、watch）
+* ルーティング(vue-router)
+* コンポーネント分割
+* axiosを使ったリクエスト送信
+* VueのFluxアーキテクチャ実装Vuex
+
+などを学ぶことでより理解が深まるかと思います。
