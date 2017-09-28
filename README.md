@@ -382,6 +382,7 @@ html、js、cssは分けて記載するのが一般的ですが、コンポー�
 
 Vueコンポーネントの詳細は以下のドキュメントを参照下さい。
 
+[コンポーネント](https://jp.vuejs.org/v2/guide/components.html)
 [Vue Component の仕様](https://vue-loader.vuejs.org/ja/start/spec.html)
 
 ざっくり解説すると、
@@ -394,11 +395,11 @@ Vueコンポーネントの詳細は以下のドキュメントを参照下さ�
 [スコープ付き CSS](https://vue-loader.vuejs.org/ja/features/scoped-css.html)
 
 
-`<script>`タグではVueコンポーネントのオプションのオブジェクトをエクスポートします。vue-loaderを通して実体はVueインスタンスが作られます。
+`<script>`タグではVueコンポーネントのオプションのオブジェクトをエクスポートします。
 
 ```js
-new Vue({
-  name: 'app'
+Vue.component('my-component',{
+  // オプション
 })
 ```
 
