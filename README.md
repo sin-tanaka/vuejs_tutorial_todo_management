@@ -223,7 +223,7 @@ export default new Router({
   ]
 })
 ```
-`<router-view>` の実体は`vue-router` ここで定義されています。`vue-router` はルーティングと、それに対応するコンポーネントを決めています。
+`<router-view>` の実体は`vue-router` でここで定義されています。`vue-router` はルーティングと、それに対応するコンポーネントを決めています。
 ここでは`/` にアクセスした時、Helloコンポーネントを出力するように設定しています。ルーティングを追加するのは簡単で、routesの配列にオブジェクトを追加していくだけです。
 ここではHogeコンポーネントがあると仮定し、`/hoge` にアクセスした時Hogeコンポーネントを返すルーティングを設定する例を示します。
 
@@ -246,7 +246,7 @@ export default new Router({
 ```
 
 
-router-viewではルートにアクセスしたとき、Helloコンポーネントを出力していることが分かりました。
+`router/index.js` ではルートにアクセスしたとき、Helloコンポーネントを出力していることが分かりました。
 Helloコンポーネントを見てみます。
 
 `src/components/Hello.vue`
@@ -645,4 +645,204 @@ export default {
 取り出したtodoの要素へのアクセスは`todo.text, todo.done` のようにアクセスできます。
 `{{ todo.text }}`とすることで`<template>` のからもアクセスできます。
 ここでは各todoには、text（todoの内容）とdone（todo済かどうかのフラグ）を定義しています。
+
+これでtodoの一覧表示が出来たので、次にtodoの追加機能を作ります。
+
+todoリストにtodoを追加していくには、v-forで表示しているtodos配列に要素を追加していけば良さそうです。
+また、追加する内容は画面のテキストボックスの入力値を使用すれば良さそうですね。
+
+従来であれば、clickイベントか、enterイベントの監視して、inputの中身を取得、…のようにすると思いますが、ここではVueの双方向バインディングを使ってみます。
+双方向バインディングを使うと、js側で値を変更すれば画面側に反映され、画面側で値を変更すればjs側に反映されます。
+Vueコンポーネント側でnewTodoというデータを追加し、`<input>` タグにバインディングしてみましょう。
+
+diff: https://github.com/sin-tanaka/vuejs_tutorial_todo_management/commit/cc50c588d015be8ac2beaa89f4e2bb07bed8ead0
+
+`src/components/Hello.vue`
+```vue
+<template>
+  <div>
+    {{ msg }}
+    <form>
+      <button>ADD TASK</button>
+      <button>DELETE FINISHED TASKS</button>
+      <p>input: <input type="text" v-model="newTodo"></p>
+      <p>task: {{ newTodo }}</p>
+    </form>
+    <div class="task-list">
+      <label class="task-list__item"
+             v-for="todo in todos">
+        <input type="checkbox"><button>EDIT</button>{{ todo.text }}
+      </label>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'hello',
+  data: function() {
+    return {
+      msg: 'Welcome to Your Vue.js App',
+      todos : [
+        {text : 'vue-router', done: false},
+        {text : 'vuex', done: false},
+        {text : 'vue-loader', done: false},
+        {text : 'awesome-vue', done: true },
+      ],
+      newTodo: ""
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+/*省略*/
+</style>
+```
+
+上手く行けば下のように、入力した値と連動してnewTodoが更新されるのが分かると思います。
+
+![双方向バインディング](./static/03.png)
+
+あとはclickイベントかenterイベントに紐付けてnewTodoをtodosに追加してあげれば、todoの追加機能はできそうですね。
+vueにはイベントハンドリングのディレクティブがあるので、それを利用してADD TASKボタンが押されたらnewTodoをtodosに追加という処理を加えます。
+（今更ですが、TodoとTaskが混在していてよくないですね・・）
+
+diff: https://github.com/sin-tanaka/vuejs_tutorial_todo_management/commit/06b522cdbbeeaad51bf99fe638ceebca64ba7503
+
+`src/components/Hello.vue`
+```vue
+<template>
+  <div>
+    {{ msg }}
+    <form>
+      <button v-on:click="addTodo()">ADD TASK</button>
+      <button>DELETE FINISHED TASKS</button>
+      <p>input: <input type="text" v-model="newTodo"></p>
+      <p>task: {{ newTodo }}</p>
+    </form>
+    <div class="task-list">
+      <label class="task-list__item"
+             v-for="todo in todos">
+        <input type="checkbox"><button>EDIT</button>{{ todo.text }}
+      </label>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'hello',
+  data: function() {
+    return {
+      msg: 'Welcome to Your Vue.js App',
+      todos : [
+        {text : 'vue-router', done: false},
+        {text : 'vuex', done: false},
+        {text : 'vue-loader', done: false},
+        {text : 'awesome-vue', done: true},
+      ],
+      newTodo: ""
+    }
+  },
+  methods: {
+    addTodo: function(event) {
+      let text = this.newTodo && this.newTodo.trim()
+      if (!text) {
+        return
+      }
+      this.todos.push({
+        text: text,
+        done: false
+      })
+      this.newTodo = ''
+    },
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+/*省略*/
+</style>
+```
+
+`v-on:click="addTodo()"` がイベントハンドリングをしている部分です。`v-on` がディレクティブ、`:click` で何のイベントを監視するか、`="addTodo()"` に内容を記載します。
+また、addTodo()はVueコンポーネントのmethodsオプションに記載します。ここではnewTodoに何か入っていれば、todosに追加し、newTodoを空にする、という処理をしています。
+コンポーネント内のdataにアクセスする時は`this` で参照します。
+また`v-on` ディレクティブは`@click="method"`のように省略記法があります。
+
+[イベントハンドリング](https://jp.vuejs.org/v2/guide/events.html)
+
+これで、todoリストへの追加機能が出来ました。
+次に、終了したtodoの削除機能を追加してみます。
+先程、todoにはdoneというbooleanを追加しているので、これもnewTodoと同様に、リストレンダリングしたcheckboxにバインディングします。
+また、DELETE FINISHED TASKSが押下されたら`todo.done===true` のtodoを削除してあげます。
+
+diff: https://github.com/sin-tanaka/vuejs_tutorial_todo_management/commit/03619d921d285683527cf64da408541ffb97756a
+（keyup.enterイベントを削除しているdiffも出ますが気にせず、、）
+
+`src/components/Hello.vue`
+```vue
+<template>
+  <div>
+    <form>
+      <button @click="addTodo()">ADD TASK</button>
+      <button @click="removeTodo()">DELETE FINISHED TASKS</button>
+      <p>input: <input type="text" v-model="newTodo"></p>
+      <p>task: {{ newTodo }}</p>
+    </form>
+    <div class="task-list">
+      <label class="task-list__item"
+             v-for="todo in todos">
+        <input type="checkbox" v-model="todo.done"><button>EDIT</button>{{ todo.text }}
+      </label>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'hello',
+  data:  () => {
+    return {
+      msg: 'Welcome to Your Vue.js App',
+      todos : [
+        {text : 'vue-router', done: false},
+        {text : 'vuex', done: false},
+        {text : 'vue-loader', done: false},
+        {text : 'awesome-vue', done: true},
+      ],
+      newTodo: ""
+    }
+  },
+  methods: {
+    addTodo: function(event) {
+      let text = this.newTodo && this.newTodo.trim()
+      if (!text) {
+        return
+      }
+      this.todos.push({
+        text: text,
+        done: false
+      })
+      this.newTodo = ''
+    },
+    removeTodo: function (event) {
+      for (let i = this.todos.length - 1; i >= 0; i--) {
+        if (this.todos[i].done) this.todos.splice(i, 1)
+      }
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+/*省略*/
+</style>
+```
+
+これで、画面のcheckboxの変化と連動して、todo.doneのtrue/falseが切り替わるようになりました。
+また、removeTodoでは、todosを走査し、todo.doneがtrueであれば配列から削除しています。
+このとき、todosは破壊的に配列から削除されるため、配列はtodos.lengthから0へ向かって走査されていることに注意して下さい。
+
 
