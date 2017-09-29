@@ -44,14 +44,19 @@ GitHub-pages: https://sin-tanaka.GitHub.io/vuejs_tutorial_todo_management/
 ## 環境
 
 ```
-mac os: 10.11.6
-node: v6.11.3
-npm: 3.10.10
-エディター: Pycharm # IntelliJ系のIDEに*.vueファイルの
-```
+% sw_vers
+ProductName:    Mac OS X
+ProductVersion: 10.11.6
+BuildVersion:   15G1611
 
-筆者はnodeもnpmもあまり詳しくないのですが各自入れておいて下さい。
-npmは、-g --save-dev --saveのオプションだけ把握していればとりあえず大丈夫です。
+% node -v
+v6.11.3
+
+% npm -v
+3.10.10
+
+エディター: Pycharm # IntelliJ系のIDEであれば、Vue.js用のプラグインがあります
+```
 
 ## Setup
 
@@ -59,10 +64,13 @@ npmは、-g --save-dev --saveのオプションだけ把握していればとり
 vue-cliは雛形からプロジェクトを作成してくれる公式ツールです。公式には、「nodeやnpm、webpackに詳しくないならあまり使わないほうがいいよ」と書いてあるのですがとても便利なので使います。
 
 ```bash
-npm install -g vue-cli
+% npm install -g vue-cli
+
+% vue --version
+2.8.2
 ```
 
-vue-cliのversionを確認し、 `vue init <template> <project-name>` でプロジェクトを作成します。
+`vue init <template> <project-name>` でプロジェクトを作成します。
 ここではwebpackというテンプレートを使い、tutorial_vuejs_todo_managementというプロジェクト名にしています。
 
 この時いくつか質問されます。基本的にそのままでいいと思いますが、私はLinterとe2eテストのツールは外しています。
@@ -71,8 +79,6 @@ vue-cliのversionを確認し、 `vue init <template> <project-name>` でプロ�
 ここでは初学者向けのチュートリアルということで外しています。
 
 ```bash
-% vue --version
-2.8.2
 % vue init webpack tutorial_vuejs_todo_management                                       
 
 ? Project name tutorial_vuejs_todo_management
@@ -98,9 +104,9 @@ vue-cliのversionを確認し、 `vue init <template> <project-name>` でプロ�
 `vue init` を実行したディレクトリにプロジェクトが作成されたので、`get started` の通りにコマンドを実行してみます。
 
 ```bash
-cd tutorial_vuejs_todo_management
-npm install
-npm run dev
+% cd tutorial_vuejs_todo_management
+% npm install
+% npm run dev
 ```
 
 上手く行けば`localhost:8080` でブラウザが開いて以下の画面が表示されるはずです。
@@ -999,7 +1005,7 @@ todo.doneがtrueと評価される場合、class='task-list__item--checked'が�
 まずは配信用の静的ファイルをビルドしてみましょう。この仕組みもvue-cliで用意されています。
 
 ```bash
-npm run build
+% npm run build
 ```
 
 デフォルトの設定だと./distが配信用ディレクトリとして作成されるはずです。
