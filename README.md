@@ -73,10 +73,10 @@ vue-cliは雛形からプロジェクトを作成してくれる公式ツール�
 `vue init <template> <project-name>` でプロジェクトを作成します。
 ここではwebpackというテンプレートを使い、tutorial_vuejs_todo_managementというプロジェクト名にしています。
 
-この時いくつか質問されます。基本的にそのままでいいと思いますが、私はLinterとe2eテストのツールは外しています。
-尚、公式ではLinterを使うことが推奨されています。が、特定のjsコーディング規約に慣れていない人には結構つらいです。これを機会に慣れるのも有りだと思います。
-
-ここでは初学者向けのチュートリアルということで外しています。
+この時いくつか質問されます。私はLinterと単体テストとe2eテストのツールは外していますが、全てYesで良いと思います。
+尚、公式ではESLintを使うことが推奨されています。しかし、jsコーディング規約に慣れていない人には結構つらいです。これを機会に慣れるのも有りだと思います。
+Linterを使う人は、通常のLinterか、airbnbのLinterを選べますのでお好きな方を選びましょう。
+ここでは初学者向けのチュートリアルということでLinterは外しています。
 
 ```bash
 % vue init webpack tutorial_vuejs_todo_management                                       
@@ -87,7 +87,7 @@ vue-cliは雛形からプロジェクトを作成してくれる公式ツール�
 ? Vue build standalone
 ? Install vue-router? Yes
 ? Use ESLint to lint your code? No
-? Setup unit tests with Karma + Mocha? Yes
+? Setup unit tests with Karma + Mocha? No
 ? Setup e2e tests with Nightwatch? No
 
    vue-cli · Generated "tutorial_vuejs_todo_management".
@@ -113,10 +113,10 @@ vue-cliは雛形からプロジェクトを作成してくれる公式ツール�
 
 ![初期画面](./static/01.png "初期画面")
 
-のちにGitHub-pagesを利用するため、GitHubを使いますので、この段階でGitHubリポジトリの作成、pushまでしてしまうと楽だと思います。
+のちにGitHub-pagesを利用するため、GitHubを使いますので、この段階でGitHubリポジトリの作成、git init、pushまでしてしまうと楽だと思います。
 
 
-主にいじっていくファイルは以下になります。他はだいたい設定ファイルです。筆者も設定ファイルについてはよく分かっていないのですが、よく分かって無くても動くものが作れてしまうのがvue-cliを使うメリットだと思います。
+主に編集していくファイルは以下になります。他はほとんど設定ファイルです。筆者も設定ファイルについてはあまりよく分かっていないのですが、それでも動くものが作れてしまうのがvue-cliを使う大きなメリットだと思います。
 
 ```bash
 ./index.html
@@ -229,7 +229,7 @@ export default new Router({
   ]
 })
 ```
-`<router-view>` の実体は`vue-router` でここで定義されています。`vue-router` はルーティングと、それに対応するコンポーネントを決めています。
+`<router-view>` の動作は`vue-router.Router` を読み込んだ`src/router/index.js`に定義されています。`vue-router` はルーティングと、それに対応して出力するコンポーネントを決めています。
 ここでは`/` にアクセスした時、Helloコンポーネントを出力するように設定しています。ルーティングを追加するのは簡単で、routesの配列にオブジェクトを追加していくだけです。
 ここではHogeコンポーネントがあると仮定し、`/hoge` にアクセスした時Hogeコンポーネントを返すルーティングを設定する例を示します。
 
@@ -565,7 +565,7 @@ export default {
 </style>
 ```
 
-以下のような画面になるはずです。このとき、`npm run dev` は起動しっぱなしでOKですソースを編集すると自動でコンパイル・リロードまでしてくれることが確認できると思います（ホットリロード）。
+以下のような画面になるはずです。このとき、`npm run dev` は起動しっぱなしでOKです。ソースを編集すると自動でコンパイル・リロードまでしてくれることが確認できると思います（ホットリロード）。
 
 ![Todoリストのイメージ](./static/02.png)
 
@@ -712,6 +712,7 @@ export default {
 ![双方向バインディング](./static/03.png)
 
 あとはclickイベントかenterイベントに紐付けてnewTodoをtodosに追加してあげれば、todoの追加機能はできそうですね。
+
 vueにはイベントハンドリングのディレクティブがあるので、それを利用してADD TASKボタンが押されたらnewTodoをtodosに追加という処理を加えます。
 （今更ですが、TodoとTaskが混在していてよくないですね・・）
 
