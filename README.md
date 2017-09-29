@@ -38,7 +38,7 @@ F/or detailed explanation on how things work, checkout the [guide](http://vuejs-
 * コンポーネントに分割（親コンポーネント・子コンポーネント間でのデータのやり取り）
 * Vuexの導入
 
-リポジトリ: https://GitHub.com/sin-tanaka/vuejs_tutorial_todo_management
+リポジトリ: https://GitHub.com/sin-tanaka/vuejs_tutorial_todo_management  
 GitHub-pages: https://sin-tanaka.GitHub.io/vuejs_tutorial_todo_management/
 
 ## 環境
@@ -63,7 +63,7 @@ v6.11.3
 まずはvue-cliをinstallします。
 vue-cliは雛形からプロジェクトを作成してくれる公式ツールです。公式には、「nodeやnpm、webpackに詳しくないならあまり使わないほうがいいよ」と書いてあるのですがとても便利なので使います。
 
-```bash
+```console
 % npm install -g vue-cli
 
 % vue --version
@@ -78,7 +78,7 @@ vue-cliは雛形からプロジェクトを作成してくれる公式ツール�
 Linterを使う人は、通常のLinterか、airbnbのLinterを選べますのでお好きな方を選びましょう。
 ここでは初学者向けのチュートリアルということでLinterは外しています。
 
-```bash
+```console
 % vue init webpack tutorial_vuejs_todo_management                                       
 
 ? Project name tutorial_vuejs_todo_management
@@ -103,7 +103,7 @@ Linterを使う人は、通常のLinterか、airbnbのLinterを選べますの�
 
 `vue init` を実行したディレクトリにプロジェクトが作成されたので、`get started` の通りにコマンドを実行してみます。
 
-```bash
+```console
 % cd tutorial_vuejs_todo_management
 % npm install
 % npm run dev
@@ -118,7 +118,9 @@ Linterを使う人は、通常のLinterか、airbnbのLinterを選べますの�
 
 主に編集していくファイルは以下になります。他はほとんど設定ファイルです。筆者も設定ファイルについてはあまりよく分かっていないのですが、それでも動くものが作れてしまうのがvue-cliを使う大きなメリットだと思います。
 
-```bash
+```console
+# 一部省略
+tutorial_vuejs_todo_management% tree
 ./index.html
 ./src
 ├── App.vue
@@ -470,7 +472,7 @@ Todoリストの要件は以下のように定義しておきます。
 
 その前に、`*.vue` ファイル内の`<style>` タグ内で、`SASS/SCSS` を書けるようにしましょう（これは好みなので、普通のCSSでいい人は入れなくてもよいです。但しサンプルコードはSCSSで書かれています）
 
-```bash
+```console
 npm install sass-loader node-sass --save-dev
 ```
 
@@ -1005,7 +1007,7 @@ todo.doneがtrueと評価される場合、class='task-list__item--checked'が�
 
 まずは配信用の静的ファイルをビルドしてみましょう。この仕組みもvue-cliで用意されています。
 
-```bash
+```console
 % npm run build
 ```
 
