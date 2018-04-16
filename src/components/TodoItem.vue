@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'item',
+  name: 'TodoItem',
   props: {
     todo: {
       required: true,

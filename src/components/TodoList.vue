@@ -22,7 +22,7 @@ export default {
     Item,
   },
 
-  name: 'todolist',
+  name: 'TodoList',
   data:  function() {
     return {
       msg: 'Welcome to Your Vue.js App',
