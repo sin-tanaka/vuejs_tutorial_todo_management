@@ -7,20 +7,21 @@
       <p>todo: {{ newTodo }}</p>
     </form>
     <div class="todo-list">
-      <label class="todo-list__item"
-             v-for="todo in todos"
-             v-bind:class="{ 'todo-list__item--checked': todo.done }">
-        <input type="checkbox" v-model="todo.done">
-        <input type="checkbox" v-model="todo.editing">
-        <input v-if="todo.editing" v-model="todo.text" @keyup.enter="todo.editing = !todo.editing">
-        <span v-else>{{ todo.text }}</span>
-      </label>
+      <template v-for="todo in todos">
+        <item :todo="todo"></item>
+      </template>
     </div>
   </div>
 </template>
 
 <script>
+import Item from '@/components/Item'
+
 export default {
+  components: {
+    Item,
+  },
+
   name: 'todolist',
   data:  function() {
     return {
@@ -70,15 +71,5 @@ export default {
   @include flex-vender;
   flex-direction: column;
   align-items: center;
-
-  &__item {
-    width: 270px;
-    text-align: left;
-    $element: #{&};
-    &--checked {
-      @extend #{$element};
-      color: #85a6c6;
-    }
-  }
 }
 </style>
