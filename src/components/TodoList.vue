@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'hello',
+  name: 'todolist',
   data:  function() {
     return {
       msg: 'Welcome to Your Vue.js App',
