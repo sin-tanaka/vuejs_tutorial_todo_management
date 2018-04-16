@@ -1,11 +1,8 @@
 <template>
   <div>
-    <form>
-      <button @click="addTodo()">ADD TODO</button>
-      <button @click="removeTodo()">DELETE FINISHED TODOS</button>
-      <p>input: <input type="text" v-model="newTodo"></p>
-      <p>todo: {{ newTodo }}</p>
-    </form>
+   <todo-form
+    @add-todo="addTodo"
+    @remove-done-todo="removeTodo"></todo-form>
     <div class="todo-list">
       <template v-for="todo in todos">
         <todo-item :todo="todo"></todo-item>
@@ -16,10 +13,12 @@
 
 <script>
 import TodoItem from '@/components/TodoItem'
+import TodoForm from '@/components/TodoForm'
 
 export default {
   components: {
     TodoItem,
+    TodoForm,
   },
 
   name: 'TodoList',
@@ -32,12 +31,11 @@ export default {
         {text : 'vue-loader', done: false, editing: false},
         {text : 'awesome-vue', done: true, editing: false},
       ],
-      newTodo: ""
     }
   },
   methods: {
-    addTodo: function(event) {
-      let text = this.newTodo && this.newTodo.trim()
+    addTodo: function(newTodo) {
+      let text = newTodo && newTodo.trim()
       if (!text) {
         return
       }
@@ -46,9 +44,8 @@ export default {
         done: false,
         editing: false
       })
-      this.newTodo = ''
     },
-    removeTodo: function (event) {
+    removeTodo: function () {
       for (let i = this.todos.length - 1; i >= 0; i--) {
         if (this.todos[i].done) this.todos.splice(i, 1)
       }
