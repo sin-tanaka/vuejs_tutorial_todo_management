@@ -8,18 +8,18 @@
     </form>
     <div class="todo-list">
       <template v-for="todo in todos">
-        <item :todo="todo"></item>
+        <todo-item :todo="todo"></todo-item>
       </template>
     </div>
   </div>
 </template>
 
 <script>
-import Item from '@/components/Item'
+import TodoItem from '@/components/TodoItem'
 
 export default {
   components: {
-    Item,
+    TodoItem,
   },
 
   name: 'TodoList',
